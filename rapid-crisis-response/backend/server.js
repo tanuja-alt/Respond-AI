@@ -1,21 +1,21 @@
 require("dotenv").config();
-const http = require("http");
+const http    = require("http");
 const express = require("express");
-const cors = require("cors");
+const cors    = require("cors");
 const { Server } = require("socket.io");
 
-const { classifyIncident } = require("./geminiService");
-const { notifyContacts } = require("./notifyService");
-const { chatCrisisGuide } = require("./crisisGuideService");
-const { getNearbyAlerts } = require("./disasterAlertService");
-const { getOSRMRoute } = require("./ambulanceService");
+const { classifyIncident }  = require("./geminiService");
+const { notifyContacts }    = require("./notifyService");
+const { chatCrisisGuide }   = require("./crisisGuideService");
+const { getNearbyAlerts }   = require("./disasterAlertService");
+const { getOSRMRoute }      = require("./ambulanceService");
 const { upsertMetrics, getLatestMetrics } = require("./healthService");
 
-const app = express();
+const app    = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: process.env.FRONTEND_URL || "http://localhost:3000", methods: ["GET", "POST"] },
+  cors: { origin: process.env.FRONTEND_URL || "http://localhost:3000", methods: ["GET","POST"] },
 });
 
 const driverLocations = {};
@@ -132,7 +132,7 @@ console.log("──────────────────────�
 
 app.post("/api/classify", async (req, res) => {
   try { res.json(await classifyIncident(req.body.description, req.body.floor, req.body.crisisType)); }
-  catch (err) { res.status(500).json({ error: err.message }); }
+  catch(err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post("/api/notify", async (req, res) => {
@@ -140,19 +140,19 @@ app.post("/api/notify", async (req, res) => {
     const { incidentId, incidentData } = req.body;
     if (!incidentId) return res.status(400).json({ error: "incidentId is required" });
     res.json(await notifyContacts(incidentId, incidentData || {}));
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch(err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post("/api/simulate", async (req, res) => {
   try {
     const scenarios = {
-      fire: { description: "Smoke smell floor 3 room 302", floor: "3", room: "302", crisisType: "fire" },
-      medical: { description: "Guest collapsed in lobby unconscious", floor: "1", room: "Lobby", crisisType: "medical" },
-      security: { description: "Aggressive intruder at main entrance", floor: "G", room: "Entrance", crisisType: "security" }
+      fire:     { description:"Smoke smell floor 3 room 302", floor:"3", room:"302", crisisType:"fire" },
+      medical:  { description:"Guest collapsed in lobby unconscious", floor:"1", room:"Lobby", crisisType:"medical" },
+      security: { description:"Aggressive intruder at main entrance", floor:"G", room:"Entrance", crisisType:"security" }
     };
     const scene = scenarios[req.body.type] || scenarios.fire;
     res.json({ ...scene, ...await classifyIncident(scene.description, scene.floor, scene.crisisType) });
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch(err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post("/api/chat/crisis-guide", async (req, res) => {
@@ -231,14 +231,14 @@ app.post("/api/health/force-sync", async (req, res) => {
   try {
     const { email } = req.body;
     if (!email) return res.status(400).json({ error: "email is required" });
-
+    
     const record = await getLatestMetrics(email);
     if (!record) return res.status(404).json({ error: "No health data found for this user" });
-
+    
     const room = `health_${record.userEmail.toLowerCase().trim()}`;
     io.to(room).emit("health:updated", record);
     console.log(`[Health] Force synced vitals for ${record.userEmail}`);
-
+    
     res.json({ success: true, data: record });
   } catch (err) {
     console.error("[Health API Error]", err);
@@ -305,7 +305,7 @@ app.post("/api/auth/google", async (req, res) => {
     const db = admin.database();
     const guestRef = db.ref(`guests/${uid}`);
     const snap = await guestRef.once('value');
-
+    
     if (!snap.exists()) {
       await guestRef.set({
         name: profile.name || profile.email.split('@')[0],
