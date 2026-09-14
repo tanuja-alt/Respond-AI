@@ -216,5 +216,3 @@ Report standard: SARIF v2.1.0 (compatible with GitHub Code Scanning, VS Code, So
 SLSA provenance: Level 2 attestation verification via Sigstore Rekor transparency log
 No telemetry: zero usage data collection; all analysis is local or explicitly opted-in API calls
 License
-MIT License — see LICENSE [blocked]
-
