@@ -1,3 +1,198 @@
+RESPONDAI
+Real-Time Emergency Response Platform
+
+Team: Hack Hive | Team ID: KH130
+Theme: Emergency Response & Disaster Management
+Hackathon: Kurukshetra 2.0 — MIT ACSC, Alandi, Pune
+
+[Add RespondAI logo or Kurukshetra logo here]
+Slide 2 — The Problem
+
+HEADLINE: "Every second counts. Current systems waste them."
+
+3 real scenarios (use big icons):
+
+👩 Woman walking home at night
+→ Being followed. Can't call. Can't type.
+→ No silent way to alert anyone.
+
+🏨 Hotel guest in a fire
+→ Doesn't speak local language.
+→ Doesn't know emergency number.
+
+🌍 Earthquake near a hotel
+→ No real-time alert system.
+→ Staff unaware. Guests unprotected.
+
+BOTTOM LINE:
+"Existing emergency tools are fragmented.
+No single platform connects victim → AI → responder → ambulance."
+Slide 3 — Our Solution
+
+HEADLINE: "RespondAI — One Platform. Complete Emergency Response."
+
+[Draw a circle with these 6 items around it:]
+
+       🔴 SOS Trigger
+      /    \
+👤 Victim   🤖 Gemini AI
+     |          |
+🚑 Ambulance  📱 Guardian Alert
+      \    /
+    💬 Live Chat
+
+"From tap to tracked ambulance in under 30 seconds."
+Slide 4 — 3 Unique SOS Methods
+
+HEADLINE: "SOS works even when you can't use your phone"
+
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  🔴 Manual SOS  │  │  📳 Shake SOS   │  │  🎤 Acoustic    │
+│                 │  │                 │  │  Detection      │
+│ Tap button      │  │ Shake 3 times   │  │                 │
+│ 3 sec countdown │  │ in 2 seconds    │  │ Mic listens for │
+│ Can cancel      │  │                 │  │ scream, gunshot │
+│                 │  │ 🔒 Built for    │  │ glass breaking  │
+│                 │  │ women's safety  │  │                 │
+│                 │  │ at night        │  │ TensorFlow.js   │
+│                 │  │ Silent — no     │  │ No server needed│
+│                 │  │ screen needed   │  │                 │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+Slide 5 — Technical Flow Diagram
+
+[Use the Mermaid diagram from the README — paste at mermaid.live → download PNG]
+
+Or draw this manually:
+
+VICTIM TAPS SOS
+      ↓
+Firebase stores incident (GPS + crisis type)
+      ↓
+      ├──→ Gemini AI: severity + 6-step SOP
+      ├──→ Twilio: WhatsApp to guardians
+      └──→ Admin Dashboard: alarm sound
+              ↓
+      Admin dispatches ambulance
+              ↓
+      Driver GPS → Socket.io → Backend
+              ↓
+      OSRM calculates route + ETA
+              ↓
+      BOTH maps update live (admin + victim)
+Slide 6 — Live Ambulance Tracking
+
+HEADLINE: "Real-time route from ambulance to victim"
+
+[Paste your actual screenshot from localhost here]
+
+HOW IT WORKS:
+• Driver GPS → emitted every 3 seconds via Socket.io
+• Backend calls OSRM API → real driving route
+• Polyline drawn on Leaflet map
+• ETA badge updates live: "Arriving in 2 min"
+• Works on both admin and victim screens simultaneously
+
+FALLBACK: If GPS unavailable →
+auto-simulation walks ambulance toward victim
+Slide 7 — Key Features Grid
+
+┌──────────────────────┬──────────────────────┐
+│ 🤖 Gemini AI Triage  │ 🌍 Offline Mode       │
+│ Severity + SOP steps │ IndexedDB + auto-sync │
+├──────────────────────┼──────────────────────┤
+│ 💗 Smartwatch Vitals │ 🌐 16 Languages       │
+│ Google Fit live data │ incl. Arabic RTL      │
+├──────────────────────┼──────────────────────┤
+│ 📱 WhatsApp Alerts   │ 🚨 Disaster Alerts    │
+│ Twilio to guardians  │ USGS + GDACS + Weather│
+└──────────────────────┴──────────────────────┘
+Slide 8 — Tech Stack
+
+FRONTEND          BACKEND           AI/ML
+─────────         ───────           ─────
+React 19          Node.js           Google Gemini
+Socket.io         Express           (triage + chat)
+Leaflet Maps      Firebase Admin    TensorFlow.js
+TensorFlow.js     Socket.io         (acoustic SOS)
+Firebase SDK      OSRM API
+i18next           Twilio
+16 languages      Google Fit API
+
+DEPLOYMENT
+──────────
+Frontend → Vercel
+Backend  → Render
+Database → Firebase RTDB
+Slide 9 — Impact & Real Use Cases
+
+WHO IT HELPS:
+┌─────────────────────────────────────────────┐
+│ 👩 Women travelling alone at night           │
+│    Shake SOS → silent security alert         │
+│                                             │
+│ 🏨 Hotel guests in emergencies              │
+│    Any language → AI guides them step by step│
+│                                             │
+│ 🌍 People near natural disasters            │
+│    Auto-alert from USGS the moment M4.5+    │
+│    earthquake detected within 20km          │
+│                                             │
+│ 🏥 Medical emergencies                      │
+│    Live vitals transmitted to hospital      │
+│    before ambulance even arrives            │
+└─────────────────────────────────────────────┘
+
+GITHUB: github.com/sarthakpcet27-code/RESPOND-AI
+DEMO:   respond-ai-mocha.vercel.app
+Slide 10 — Thank You
+
+RESPONDAI
+
+"From tap to tracked ambulance in under 30 seconds."
+
+Team Hack Hive | KH130
+
+[Your names]
+[Your emails or GitHub]
+
+LIVE DEMO ↗
+respond-ai-mocha.vercel.app
+What I can help you with right now
+Tell me which of these you need and I'll give it to you immediately:
+
+Exact text for any slide in more detail
+The Mermaid diagram code to paste at mermaid.live for Slide 5
+Speaker notes for each slide
+Color scheme matching your dark RespondAI theme (#0A0A0F background, #E24B4A red)
+Canva step-by-step instructions to build it in 20 minutes
+Est. Credits Used: 1.13
+Elapsed time: 46s
+
+
+Checkpoint
+Restore
+ystem / User Prompt for the LLM:
+Role: Act as an expert DevSecOps Engineer and Technical Product Writer.
+Task: Generate a clean, highly professional, and well-structured README.md file for a hackathon software security tool based on the following project context and specifications.
+Project Context:
+Project Name: DepScan AI — Software Supply Chain Security Analyzer
+Problem Statement: Hackathon Problem Statement 14 (PS14: Software Supply Chain Security Analyzer).
+Core Purpose: Detect supply chain risks, bad dependencies, malicious package behaviors, and attack vectors across multiple programming languages without executing untrusted code (Zero Code Execution Guarantee).
+Required Sections to Include in Markdown:
+Header & Subtitle: Project Title with an enterprise-grade tagline highlighting core capabilities.
+Problem Statement Capabilities Table: A Markdown table listing expected capabilities (e.g., Dependency Graph, Known Vulnerabilities, Typosquatting/Confusion, Package Reputation, Build Provenance, Prioritized Remediation), the corresponding engine/backend module, and technical implementation highlights.
+Security/Design Guarantees: Highlight a key security feature (e.g., "Zero Code Execution Guarantee") using bullet points explaining static parsing and safety guarantees.
+Quick Start Guide: Clear shell code blocks (bash) showing setup steps, CLI commands (with flags for SBOM export, SARIF reports, and CI/CD quality gates), and running the REST API backend.
+REST API Specifications Table: A Markdown table listing HTTP methods, endpoints, and brief descriptions (e.g., scanning GitHub repos, ZIP file uploads, fetching results, SARIF/SBOM exports, CI/CD gates, and AI threat explanation).
+Testing & Validation Summary: Briefly state automated test suite status and coverage metrics.
+Formatting & Style Guidelines:
+Use clear Markdown hierarchy (headers, bolding, backtick code spans, tables, callouts).
+Keep technical descriptions concise, using realistic tool names and standards (e.g., NetworkX, OSV.dev, CycloneDX v1.5, SARIF v2.1.0, AST inspection, FastAPI).
+Do not include unnecessary conversational intro/outro text—output pure Markdown ready to save into README.md.
+
+Kiro
+markdown
+
 # DepScan AI — Software Supply Chain Security Analyzer
 
 > **Zero-Trust Dependency Intelligence** · Static AST Analysis · Multi-Language SBOM Generation · AI-Powered Threat Explanation · CI/CD Quality Gates · SARIF v2.1.0 & CycloneDX v1.5 Export
@@ -216,3 +411,4 @@ Report standard: SARIF v2.1.0 (compatible with GitHub Code Scanning, VS Code, So
 SLSA provenance: Level 2 attestation verification via Sigstore Rekor transparency log
 No telemetry: zero usage data collection; all analysis is local or explicitly opted-in API calls
 License
+MIT License — see LICENSE [blocked]
